@@ -4,9 +4,15 @@ var shots = [];
 var movement = [];
 var highscore = 0;
 var fr = 10
+var eatSound;
 var gameState = 'init';
 
-// setup the game's canvas and frameRate
+// preload game's sound file
+function preload() {
+  eatSound = loadSound("sounds/food.mp3");
+}
+
+  // setup the game's canvas and frameRate
 function setup(){
   createCanvas(800, 800);
   frameRate(fr);
@@ -64,6 +70,7 @@ function runGame(){
       snake.tail.push(createVector(snake.x, snake.y));
       shots.splice(i, 1);
       setJelloShots(1);
+      eatSound.play();
       if(snake.tail.length > highscore) highscore = snake.tail.length;
       if (fr < 60) fr++;
       frameRate(fr);
