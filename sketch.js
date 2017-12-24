@@ -93,6 +93,7 @@ function endGame(){
   startBtn.position(background.width/2, 600);
   startBtn.mousePressed(startGame);
   fr = 10;
+  frameRate(fr);
   noLoop();
 }
 
