@@ -11,6 +11,7 @@ function Snake(){
   }
 
   this.update = function(){
+
     //move snake's position into tail and pop off the end
     if(movement.length){
       if(snake.speed.x != movement[0][0]*-1 && snake.speed.y != movement[0][1]*-1){
@@ -21,9 +22,22 @@ function Snake(){
 
     this.tail.unshift(createVector(this.pos.x, this.pos.y));
     this.tail.pop();
+
     //move the snake
     this.pos.x += this.speed.x * pixel_size;
     this.pos.y += this.speed.y * pixel_size;
+
+    //keeps the snake always looping on screen
+    if (this.pos.x > width - pixel_size) {
+      this.pos.x = 0;
+    } else if (this.pos.x < 0) {
+      this.pos.x = width - pixel_size;
+    }
+    if (this.pos.y > height - pixel_size) {
+      this.pos.y = 0;
+    } else if (this.pos.y < 0) {
+      this.pos.y = height - pixel_size;
+    }
   }
 
   this.dir = function(x, y){

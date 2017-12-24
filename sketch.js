@@ -5,21 +5,33 @@ var movement = [];
 var highscore = 0;
 var gameState = 'init';
 
+// setup the game's canvas and frameRate
 function setup(){
   createCanvas(800, 800);
   frameRate(10);
 }
 
+//Welcome screen with instructions and start button
 function initGame(){
   background(0, 0, 0);
-  var name = 'SNAKE <3 FOOD';
-  textSize(50);
+  var name = 'SNAKE';
+  textSize(200);
   fill(255);
   nameWidht = textWidth(name);
-  text(name, (width - nameWidht)/2, height/2 - 40);
+  text(name, (width - nameWidht)/2, height/2);
+
+  //instructions
+  var inst = 'Use the arrow keys on your keyboard to control the snake.\nEating food makes you bigger and faster.\nThere are no walls.'
+  textSize(20);
+  fill(255);
+  instWidht = textWidth(inst);
+  text(inst, 50, 600);
+
+  //start button
   startBtn = createButton('START (or press space)');
   startBtn.position(width/2 - startBtn.width/2, height/2);
   startBtn.mousePressed(startGame);
+
   noLoop();
 }
 
@@ -27,16 +39,16 @@ function startGame(){
   removeElements();
   gameState = 'play';
   snake = new Snake();
-  setJelloShots(5);
+  setJelloShots(5); //JelloShots = food
   loop();
 }
 
 function runGame(){
   background(0, 0, 0);
   textSize(12);
-  fill (255);
+  fill (255); //text color
   text("SCORE: " + snake.tail.length, 1, 10);
-  text("HIGHSCORE: " + highscore, 1, 24);
+  text("HIGHSCORE: " + highscore, 100, 10);
 
   snake.update();
   snake.show();
@@ -125,6 +137,6 @@ function keyPressed(){
   }else if(keyCode === RIGHT_ARROW){
     movement.push([1, 0]);
   }else if (gameState != 'play' && keyCode === 32){
-    startGame(); // press space to start or restart game
+    startGame();
   }
 }
