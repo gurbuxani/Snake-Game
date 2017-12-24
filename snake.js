@@ -52,6 +52,7 @@ function Snake(){
     for(var i=0;i<this.tail.length;i++){
       if(this.tail[i].x == this.pos.x && this.tail[i].y == this.pos.y){
         gameState = 'end';
+        fr = 10;
       }
     }
   }
