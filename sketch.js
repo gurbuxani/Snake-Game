@@ -12,12 +12,12 @@ function setup(){
 
 function initGame(){
   background(0, 0, 0);
-  var name = 'Snake Game';
+  var name = 'SNAKE <3 FOOD';
   textSize(50);
   fill(255);
   nameWidht = textWidth(name);
   text(name, (width - nameWidht)/2, height/2 - 40);
-  startBtn = createButton('Start Game');
+  startBtn = createButton('START (or press space)');
   startBtn.position(width/2 - startBtn.width/2, height/2);
   startBtn.mousePressed(startGame);
   noLoop();
@@ -34,7 +34,7 @@ function startGame(){
 function runGame(){
   background(0, 0, 0);
   textSize(12);
-  fill (0, 242, 96);
+  fill (255);
   text("SCORE: " + snake.tail.length, 1, 10);
   text("HIGHSCORE: " + highscore, 1, 24);
 
@@ -57,14 +57,14 @@ function runGame(){
 function endGame(){
   background(0, 0, 0);
   textSize(32);
-  var msg = 'Game Over';
-  var score = 'Your Score is ' + snake.tail.length;
+  var msg = 'GAME OVER';
+  var score = 'YOUR SCORE: ' + snake.tail.length;
   msgWidht = textWidth(msg);
   scoreWidht = textWidth(score);
   fill(255);
   text(msg, (width - msgWidht)/2, height/2 - 40);
   text(score, (width - scoreWidht)/2, height/2);
-  startBtn = createButton('Restart Game');
+  startBtn = createButton('RESTART (or press space)');
   startBtn.position(width/2 - startBtn.width/2, height/2 + 40);
   startBtn.mousePressed(startGame);
   noLoop();
@@ -124,7 +124,7 @@ function keyPressed(){
     movement.push([-1, 0]);
   }else if(keyCode === RIGHT_ARROW){
     movement.push([1, 0]);
-  }else if (keyCode == 32){
-    startGame;
+  }else if (gameState != 'play' && keyCode === 32){
+    startGame(); // press space to start or restart game
   }
 }
