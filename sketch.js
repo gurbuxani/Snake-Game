@@ -3,12 +3,13 @@ var pixel_size = 20;
 var shots = [];
 var movement = [];
 var highscore = 0;
+var fr = 10
 var gameState = 'init';
 
 // setup the game's canvas and frameRate
 function setup(){
   createCanvas(800, 800);
-  frameRate(10);
+  frameRate(fr);
 }
 
 //Welcome screen with instructions and start button
@@ -24,12 +25,13 @@ function initGame(){
   var inst = 'Use the arrow keys on your keyboard to control the snake.\nEating food makes you bigger and faster.\nThere are no walls.'
   textSize(20);
   fill(255);
-  instWidht = textWidth(inst);
-  text(inst, 50, 600);
+  textAlign(CENTER);
+  text(inst, 400, 600);
+
 
   //start button
   startBtn = createButton('START (or press space)');
-  startBtn.position(width/2 - startBtn.width/2, height/2);
+  startBtn.position(background.width/2, 600);
   startBtn.mousePressed(startGame);
 
   noLoop();
@@ -47,6 +49,7 @@ function runGame(){
   background(0, 0, 0);
   textSize(12);
   fill (255); //text color
+  textAlign(LEFT);
   text("SCORE: " + snake.tail.length, 1, 10);
   text("HIGHSCORE: " + highscore, 100, 10);
 
@@ -62,22 +65,25 @@ function runGame(){
       shots.splice(i, 1);
       setJelloShots(1);
       if(snake.tail.length > highscore) highscore = snake.tail.length;
+      if (fr < 60) fr++;
+      frameRate(fr);
     }
   }
 }
 
 function endGame(){
   background(0, 0, 0);
-  textSize(32);
+  textSize(60);
   var msg = 'GAME OVER';
   var score = 'YOUR SCORE: ' + snake.tail.length;
   msgWidht = textWidth(msg);
   scoreWidht = textWidth(score);
   fill(255);
-  text(msg, (width - msgWidht)/2, height/2 - 40);
+  text(msg, (width - msgWidht)/2, height/2 - 80);
   text(score, (width - scoreWidht)/2, height/2);
+
   startBtn = createButton('RESTART (or press space)');
-  startBtn.position(width/2 - startBtn.width/2, height/2 + 40);
+  startBtn.position(background.width/2, 600);
   startBtn.mousePressed(startGame);
   noLoop();
 }
