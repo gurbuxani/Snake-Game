@@ -6,12 +6,12 @@ var highscore = 0;
 var gameState = 'init';
 
 function setup(){
-  createCanvas(600, 600);
+  createCanvas(800, 800);
   frameRate(10);
 }
 
 function initGame(){
-  background(50, 50, 100);
+  background(0, 0, 0);
   var name = 'Snake Game';
   textSize(50);
   fill(255);
@@ -32,17 +32,17 @@ function startGame(){
 }
 
 function runGame(){
-  background(50, 50, 100);
+  background(0, 0, 0);
   textSize(12);
-  fill(255);
-  text("score: " + snake.tail.length, 1, 10);
-  text("highscore: " + highscore, 1, 24);
+  fill (0, 242, 96);
+  text("SCORE: " + snake.tail.length, 1, 10);
+  text("HIGHSCORE: " + highscore, 1, 24);
 
   snake.update();
   snake.show();
   snake.checkDeath();
 
-  fill(0, 255, 0, 100);
+  fill(5, 117, 230); //food color
   for(var i=0;i<shots.length;i++){
     rect(shots[i].x, shots[i].y, pixel_size, pixel_size);
     if(snake.eat(shots[i])){
@@ -55,7 +55,7 @@ function runGame(){
 }
 
 function endGame(){
-  background(50, 50, 100);
+  background(0, 0, 0);
   textSize(32);
   var msg = 'Game Over';
   var score = 'Your Score is ' + snake.tail.length;
@@ -124,5 +124,7 @@ function keyPressed(){
     movement.push([-1, 0]);
   }else if(keyCode === RIGHT_ARROW){
     movement.push([1, 0]);
+  }else if (keyCode == 32){
+    startGame;
   }
 }
