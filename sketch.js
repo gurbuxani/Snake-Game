@@ -72,8 +72,9 @@ function runGame(){
       setJelloShots(1);
       eatSound.play();
       if(snake.tail.length > highscore) highscore = snake.tail.length;
-      if (fr < 60) fr++;
+      if (fr < 60) fr += 0.5;
       frameRate(fr);
+      console.log(fr);
     }
   }
 }
