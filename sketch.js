@@ -36,7 +36,7 @@ function initGame(){
 
 
   //start button
-  startBtn = createButton('START (or press space)');
+  startBtn = createButton('Press SPACE to Start');
   startBtn.position(background.width/2, 600);
   startBtn.mousePressed(startGame);
 
@@ -74,7 +74,6 @@ function runGame(){
       if(snake.tail.length > highscore) highscore = snake.tail.length;
       if (fr < 60) fr += 0.5;
       frameRate(fr);
-      console.log(fr);
     }
   }
 }
@@ -90,7 +89,7 @@ function endGame(){
   text(msg, (width - msgWidht)/2, height/2 - 80);
   text(score, (width - scoreWidht)/2, height/2);
 
-  startBtn = createButton('RESTART (or press space)');
+  startBtn = createButton('Press SPACE to Restart');
   startBtn.position(background.width/2, 600);
   startBtn.mousePressed(startGame);
   fr = 10;
