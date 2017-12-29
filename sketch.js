@@ -1,4 +1,6 @@
 var snake;
+var img;
+var goImg;
 var pixel_size = 20;
 var shots = [];
 var movement = [];
@@ -10,6 +12,8 @@ var gameState = 'init';
 // preload game's sound file
 function preload() {
   eatSound = loadSound("sounds/food.mp3");
+  img=loadImage('welcome-screen.png');
+  goImg=loadImage('game-over.png');
 }
 
   // setup the game's canvas and frameRate
@@ -21,18 +25,19 @@ function setup(){
 //Welcome screen with instructions and start button
 function initGame(){
   background(0, 0, 0);
-  var name = 'SNAKE';
-  textSize(200);
-  fill(255);
-  nameWidht = textWidth(name);
-  text(name, (width - nameWidht)/2, height/2);
+  image(img, 0, 0);
+  // var name = 'SNAKE';
+  // textSize(200);
+  // fill(255);
+  // nameWidht = textWidth(name);
+  // text(name, (width - nameWidht)/2, height/2);
 
   //instructions
-  var inst = 'Use the arrow keys on your keyboard to control the snake.\nEating food makes you bigger and faster.\nThere are no walls.'
-  textSize(20);
-  fill(255);
-  textAlign(CENTER);
-  text(inst, 400, 600);
+  // var inst = 'Use the arrow keys on your keyboard to control the snake.\nEating food makes you bigger and faster.\nThere are no walls.'
+  // textSize(20);
+  // fill(255);
+  // textAlign(CENTER);
+  // text(inst, 400, 600);
 
 
   //start button
@@ -47,7 +52,7 @@ function startGame(){
   removeElements();
   gameState = 'play';
   snake = new Snake();
-  setJelloShots(5); //JelloShots = food
+  setJelloShots(7); //JelloShots = food
   loop();
 }
 
@@ -80,19 +85,20 @@ function runGame(){
 
 function endGame(){
   background(0, 0, 0);
+  image(goImg, 0, 0);
   textSize(60);
-  var msg = 'GAME OVER';
-  var score = 'YOUR SCORE: ' + snake.tail.length;
-  msgWidht = textWidth(msg);
-  scoreWidht = textWidth(score);
+  var msg='GAME OVER';
+  var score='YOUR SCORE: ' + snake.tail.length;
+  msgWidht=textWidth(msg);
+  scoreWidht=textWidth(score);
   fill(255);
-  text(msg, (width - msgWidht)/2, height/2 - 80);
-  text(score, (width - scoreWidht)/2, height/2);
+  text(msg, (width - msgWidht)/2, 500);
+  text(score, (width - scoreWidht)/2, 600);
 
-  startBtn = createButton('Press SPACE to Restart');
-  startBtn.position(background.width/2, 600);
+  startBtn=createButton('Press SPACE to Restart');
+  startBtn.position(background.width/2, 800);
   startBtn.mousePressed(startGame);
-  fr = 10;
+  fr=10;
   frameRate(fr);
   noLoop();
 }
