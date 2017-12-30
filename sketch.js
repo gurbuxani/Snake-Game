@@ -7,17 +7,21 @@ var movement = [];
 var highscore = 0;
 var fr = 10
 var eatSound;
+var bonusSound;
+var endSound;
 var gameState = 'init';
 
 // preload game's sound file
 function preload() {
-  eatSound = loadSound("sounds/food.mp3");
-  img=loadImage('welcome-screen.png');
-  goImg=loadImage('game-over.png');
+  eatSound = loadSound("assets/sounds/food.mp3");
+  bonusSound = loadSound("assets/sounds/bonus.mp3");
+  endSound = loadSound("assets/sounds/end.mp3");
+  img=loadImage('assets/welcome-screen.png');
+  goImg=loadImage('assets/game-over.png');
 }
 
   // setup the game's canvas and frameRate
-function setup(){
+function setup() {
   createCanvas(800, 800);
   frameRate(fr);
 }
@@ -58,11 +62,11 @@ function startGame(){
 
 function runGame(){
   background(0, 0, 0);
-  textSize(12);
+  textSize(20);
   fill (255); //text color
   textAlign(LEFT);
-  text("SCORE: " + snake.tail.length, 1, 10);
-  text("HIGHSCORE: " + highscore, 100, 10);
+  text("SCORE: " + snake.tail.length, 5, 20);
+  text("HIGHSCORE: " + highscore, 125, 20);
 
   snake.update();
   snake.show();
@@ -87,11 +91,11 @@ function endGame(){
   background(0, 0, 0);
   image(goImg, 0, 0);
   textSize(60);
+  fill(255);
   var msg='GAME OVER';
   var score='YOUR SCORE: ' + snake.tail.length;
   msgWidht=textWidth(msg);
   scoreWidht=textWidth(score);
-  fill(255);
   text(msg, (width - msgWidht)/2, 500);
   text(score, (width - scoreWidht)/2, 600);
 
