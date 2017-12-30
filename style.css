@@ -1,7 +1,7 @@
 
 html, body {
   height: 100%;
-   
+
  }
 
 body {
@@ -14,8 +14,9 @@ body {
   /* This centers our sketch vertically. */
   align-items: center;
 
-  background-color: #24243e;
+  /*background-color: #24243e; */
 
-
+background: linear-gradient(-45deg, #0575E6, #00F260);
+  /*background: linear-gradient(-45deg, #313f24, #24243f);*/
 
 }
